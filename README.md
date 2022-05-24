@@ -2,6 +2,8 @@
   <img alt="EL_GELADON_v1" title="EL_GELADON_v1" src="./assets/images/logo.svg" width="220px" />
 </h1>
 
+> :construction: Projeto em construção :construction:
+
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-Layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
