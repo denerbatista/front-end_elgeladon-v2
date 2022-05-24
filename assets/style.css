@@ -1,0 +1,652 @@
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Exo, sans-serif;
+}
+
+body,
+html {
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  background-color: #ffffff;
+}
+
+.Home {
+  position: relative;
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #50c5ee 60%,
+    #00d4ff80 100%
+  );
+  min-height: calc(100vh - 60px);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 20px;
+  color: #000000;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.Home h2 {
+  display: flex;
+  justify-content: center;
+  color: #000000;
+}
+
+.Home__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.PaletaLista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px 50px;
+}
+
+@media (max-width: 1220px) {
+  .PaletaLista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .row {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 840px) {
+  .PaletaLista {
+    grid-template-columns: 1fr;
+  }
+  .row {
+    gap: 2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  div.Header__logo.Logo {
+    width: 260px;
+  }
+}
+
+.PaletaCardItem,
+.PaletaListaItem {
+  background: #ffffff4d;
+  border-radius: 10px;
+  padding: 10px;
+  width: 315px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.PaletaCardItem {
+  margin: 20px 0;
+  height: 150px;
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  .PaletaCardItem,
+  .PaletaListaItem {
+    width: 210px;
+    height: 180px;
+  }
+}
+
+.PaletaCardItem > div,
+.PaletaListaItem > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.PaletaCardItem__sabor,
+.PaletaListaItem__sabor {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.PaletaCardItem__descricao,
+.PaletaListaItem__descricao {
+  font-size: 0.85em;
+}
+
+.PaletaCardItem__preco,
+.PaletaListaItem__preco {
+  color: #9400d3;
+}
+
+.PaletaListaItem__foto {
+  height: 150px;
+  margin-right: -60px;
+}
+
+.paleta-escolhida-espaco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+#saborPaleta {
+  padding: 0.5rem;
+  width: 315px;
+  border: none;
+  border-radius: 0.2rem;
+}
+
+.default-button {
+  background-color: transparent;
+  border: 2px solid #9400d3;
+  padding: 0.4rem;
+  color: #9400d3;
+  font-weight: 600;
+  border-radius: 0.2rem;
+  width: 180px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+}
+
+.default-button:hover {
+  background-color: #9400d3;
+  color: #ffffff;
+}
+
+#paleta-escolhida-input-espaco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.Header {
+  max-width: 1110px;
+  margin: 0 auto 25px auto;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 20px 0 35px 0;
+}
+
+.Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #ffffff4d;
+  width: 270px;
+  height: 45px;
+}
+
+.Logo__titulo {
+  position: absolute;
+  left: 55px;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.Logo__icone {
+  position: absolute;
+  left: -20px;
+  top: -15px;
+}
+
+.Sacola {
+  position: relative;
+}
+
+.Sacola__icone {
+  cursor: pointer;
+}
+
+.Sacola__badge {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  color: white;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  bottom: 0;
+  right: 0;
+}
+
+@media (max-width: 1220px) {
+  .Header {
+    max-width: 720px;
+  }
+  .dica {
+    font-size: 0.5rem;
+  }
+  .dica p {
+    white-space: nowrap;
+  }
+  .Logo__titulo {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 840px) {
+  .Header {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 400px) {
+  .Header {
+    max-width: 250px;
+  }
+
+  .row {
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .Logo__titulo {
+    font-size: 1.5em;
+  }
+}
+
+.modal-overlay {
+  background-color: #00000050;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.modal {
+  margin: 1rem;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  min-height: 300px;
+  background-color: #fff;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #50c5ee 60%,
+    #00d4ff80 100%
+  );
+  padding: 1rem;
+}
+
+.close-modal {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.5rem;
+  transform: scale(0.7);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  transform: scale(1);
+}
+
+.modal-body {
+  padding: 0.5rem 1rem;
+}
+
+.modal-body div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body div input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  outline: none;
+  border: solid 1px #ccc;
+  margin-bottom: 0.4rem;
+  border-radius: 0.3rem;
+}
+
+.modal-body div button {
+  padding: 0.5rem;
+  width: 30%;
+  font-size: 1rem;
+  background-color: transparent;
+  color: #0097ce;
+  border: solid 1px #0097ce;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-body div button:hover {
+  background-color: #0097ce;
+  color: #fff;
+}
+
+.button-modal-create {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto 25px auto;
+  max-width: 1110px;
+}
+
+.Acoes {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  max-width: 280px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 48%;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.Acoes__editar {
+  color: #003cff;
+  border: solid 1px #003cff;
+  background-color: transparent;
+}
+
+.Acoes__editar:hover {
+  color: #fff;
+  background-color: #003cff;
+}
+
+.Acoes__apagar {
+  color: #ff0000;
+  border: solid 1px #ff0000;
+  background-color: transparent;
+}
+
+.Acoes__apagar:hover {
+  color: #fff;
+  background-color: #ff0000;
+}
+
+.modal-body-delete {
+  display: flex;
+  flex-wrap: wrap;
+}
+.modal-body-delete p {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.btns_delete {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn_delete {
+  background-color: transparent;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  width: 30%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn_delete_no {
+  color: #ff0000;
+  border: solid 1px #ff0000;
+}
+
+.btn_delete_no:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.btn_delete_yes {
+  color: #00b309;
+  border: solid 1px #00b309;
+}
+
+.btn_delete_yes:hover {
+  background-color: #00b309;
+  color: #fff;
+}
+
+/* Modal de error inicio */
+.modalError {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-items: center;
+}
+
+.modalError .contentError {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 0 20px 20px 20px;
+  border-radius: 5px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contentError h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #50c5ee 60%,
+    #00d4ff80 100%
+  );
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modalErrorBtn {
+  height: 5vh;
+  min-height: 30px;
+  width: 15vh;
+  min-width: 130px;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  background-color: #c8d7e6;
+}
+
+#mensagemError {
+  color: #000000;
+  font-size-adjust: unset;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+/* Modal de error fim */
+
+/* Modal de segurança inicio*/
+.backSeguranca {
+  /* background: none; */
+  width: 15.559rem;
+  height: 2.639rem;
+}
+
+#seguranca {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 3.2rem;
+  height: 1.75rem;
+}
+
+#seguranca:hover {
+  transform: scale(1.1);
+}
+
+#senhaSeguranca {
+  width: 100%;
+  height: 3rem;
+  font-size: 2rem;
+}
+
+#password {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+}
+/* Modal de segurança fim*/
+
+/* Balão dica inicio*/
+.dica {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  left: 55px;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.dica:hover .dicaTexto {
+  visibility: visible;
+}
+
+.dicaTexto {
+  position: absolute;
+  visibility: hidden;
+  font-size: 13px;
+  width: 200px;
+  background: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -100px;
+  margin-bottom: 5px;
+}
+.dicaTexto:after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #000 transparent transparent transparent;
+}
+/* Balão dica fim*/
+
+/* Skeleton Paletas inicio*/
+.SkeletonListaItem {
+  background: #ffffff4d;
+  border-radius: 10px;
+  padding: 10px;
+  width: 315px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.SkeletonListaItem p {
+  color: #9400d3;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 400px) {
+  .SkeletonListaItem {
+    width: 210px;
+    height: 180px;
+  }
+
+  input#saborPaleta {
+    width: 250px;
+  }
+}
+
+.SkeletonListaItem > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.placeholder-item {
+  box-shadow: 0 4px 10px 0 rgba(33, 33, 33, 0.15);
+  border-radius: 4px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes load {
+  from {
+    left: -150px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.placeholder-item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -150px;
+  top: 0;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #e8e8e8 50%,
+    transparent 100%
+  );
+  animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+/* Skeleton Paletas fim*/
