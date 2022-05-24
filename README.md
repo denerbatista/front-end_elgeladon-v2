@@ -22,9 +22,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - CSS
 - JavaScript Vanilla
 
+
+
 ## :information_source: Layout
 
-Você pode visualizar o layout do projeto através desse link: https://denerbatista.github.io/front-end_elgeladon-v1/
+Você pode visualizar o layout do projeto através desse link: https://denerbatista.github.io/front-end_elgeladon-v2/
 
 ## :memo: Licença
 
