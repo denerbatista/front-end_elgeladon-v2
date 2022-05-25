@@ -1,4 +1,4 @@
-const baseURL = 'https://api-elgeladon-v2.onrender.com/paletas';
+const baseURL = "https://api-elgeladon-v2.onrender.com/paletas";
 // const baseURL = "http://localhost:3000/paletas";
 
 let paletas = [];
@@ -15,7 +15,7 @@ function modalErrorF() {
 
 function receberMensagem(array) {
   modalErrorF();
-  document.querySelector(".contentError").innerHTML=''
+  document.querySelector(".contentError").innerHTML = "";
   document.querySelector(".contentError").insertAdjacentHTML(
     "beforeend",
     `<h2 id="title-header-modalError">Atenção</h2>
@@ -24,9 +24,18 @@ function receberMensagem(array) {
   );
   document.querySelector("#mensagemError").innerText = `${array.mensagem}`;
   modalErrorA();
+  
   setTimeout(() => {
     modalErrorF();
   }, 5000);
+
+  document.querySelector(".contentError").innerHTML = "";
+  document.querySelector(".contentError").insertAdjacentHTML(
+    "beforeend",
+    ` <h2 id="title-header-modalError">Atenção</h2>
+          <div id="loader">
+            <div class="c-loader"></div>`
+  );
 }
 
 async function findAllPaletas() {
@@ -204,7 +213,7 @@ function fecharModalDelete() {
 }
 
 async function deletePaleta(id) {
-  fecharModalDelete()
+  fecharModalDelete();
   modalErrorA();
 
   const token = localStorage.getItem("token");
