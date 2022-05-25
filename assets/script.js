@@ -1,5 +1,5 @@
-// const baseURL = 'https://api-el-geladon-v1.onrender.com/paletas';
-const baseURL = "http://localhost:3000/paletas";
+const baseURL = 'https://api-elgeladon-v2.onrender.com/paletas';
+// const baseURL = "http://localhost:3000/paletas";
 
 let paletas = [];
 
@@ -24,7 +24,7 @@ function receberMensagem(array) {
 async function findAllPaletas() {
   const response = await fetch(`${baseURL}/find-paletas`);
 
-  paletas = [await response.json()];
+  paletas =[await response.json()];
   if (paletas[0].mensagem) {
     receberMensagem(paletas[0]);
   } else {
@@ -140,7 +140,7 @@ async function createPaleta() {
     foto,
     preco,
   };
-  const modoEdicaoAtivado = id != null;
+  const modoEdicaoAtivado = id != "";
   const endpoint =
     baseURL +
     (modoEdicaoAtivado ? `/update/${id},${token}` : `/create/${token}`);
