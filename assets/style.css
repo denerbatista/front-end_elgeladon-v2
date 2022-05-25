@@ -650,3 +650,28 @@ textarea {
   animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 /* Skeleton Paletas fim*/
+
+/* animação carregamento mensagem inicio*/
+#loader{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 10.625rem;
+  transform: scale(2);
+}
+
+.c-loader {
+  animation: is-rotating 1s infinite;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: #51d4db;
+  height: 3.125rem;
+  width: 3.125rem;
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+  }
+}
+/* animação carregamento mensagem fim*/

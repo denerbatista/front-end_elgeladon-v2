@@ -14,6 +14,14 @@ function modalErrorF() {
 }
 
 function receberMensagem(array) {
+  modalErrorF();
+  document.querySelector(".contentError").innerHTML=''
+  document.querySelector(".contentError").insertAdjacentHTML(
+    "beforeend",
+    `<h2 id="title-header-modalError">Atenção</h2>
+    <p id="mensagemError"></p>
+    <button class="default-button" onclick="modalErrorF()">Fechar</button>`
+  );
   document.querySelector("#mensagemError").innerText = `${array.mensagem}`;
   modalErrorA();
   setTimeout(() => {
@@ -24,7 +32,7 @@ function receberMensagem(array) {
 async function findAllPaletas() {
   const response = await fetch(`${baseURL}/find-paletas`);
 
-  paletas =[await response.json()];
+  paletas = [await response.json()];
   if (paletas[0].mensagem) {
     receberMensagem(paletas[0]);
   } else {
@@ -94,13 +102,16 @@ function fecharPaleta() {
 
 async function abrirModal(id = null) {
   if (id != null) {
-    console.log("entrei");
     document.querySelector("#title-header-modal").innerText =
       "Atualizar uma Paleta";
     document.querySelector("#button-form-modal").innerText = "Atualizar";
 
+    modalErrorA();
+
     const response = await fetch(`${baseURL}/find-paleta/${id}`);
     const paleta = await response.json();
+
+    modalErrorF();
 
     document.querySelector("#sabor").value = paleta.sabor;
     document.querySelector("#preco").value = paleta.preco;
@@ -127,7 +138,6 @@ function fecharModal() {
 
 async function createPaleta() {
   const id = document.querySelector("#id").value;
-  console.log(id);
   const sabor = document.querySelector("#sabor").value;
   const preco = document.querySelector("#preco").value;
   const descricao = document.querySelector("#descricao").value;
@@ -144,6 +154,10 @@ async function createPaleta() {
   const endpoint =
     baseURL +
     (modoEdicaoAtivado ? `/update/${id},${token}` : `/create/${token}`);
+
+  fecharModal();
+  modalErrorA();
+
   const response = await fetch(endpoint, {
     method: modoEdicaoAtivado ? "put" : "post",
     headers: {
@@ -152,19 +166,19 @@ async function createPaleta() {
     mode: "cors",
     body: JSON.stringify(paleta),
   });
+
   const novaPaleta = await response.json();
 
+  modalErrorF();
+
   if (novaPaleta.mensagem) {
-    fecharModal();
     receberMensagem(novaPaleta);
   } else {
     if (modoEdicaoAtivado) {
-      fecharModal();
       findAllPaletas();
       const mensagem = { mensagem: "Paleta editada com sucesso!" };
       receberMensagem(mensagem);
     } else {
-      fecharModal();
       findAllPaletas();
       const mensagem = { mensagem: "Paleta adicionada com sucesso!" };
       receberMensagem(mensagem);
@@ -176,7 +190,6 @@ function abrirModalDelete(id) {
   document.querySelector(".btns_delete").insertAdjacentHTML(
     "beforeend",
     `
-
     <button class="btn_delete_no btn_delete" onclick="fecharModalDelete()">
     Não
     </button>
@@ -191,6 +204,9 @@ function fecharModalDelete() {
 }
 
 async function deletePaleta(id) {
+  fecharModalDelete()
+  modalErrorA();
+
   const token = localStorage.getItem("token");
   const response = await fetch(`${baseURL}/delete/${id},${token}`, {
     method: "delete",
@@ -199,13 +215,9 @@ async function deletePaleta(id) {
     },
     mode: "cors",
   });
-
   const result = await response.json();
 
-  if (result.mensagem) {
-    fecharModalDelete();
-    receberMensagem(result);
-  }
+  receberMensagem(result);
   findAllPaletas();
 }
 
@@ -233,14 +245,15 @@ async function verificaSeguranca(resposta) {
 async function enviarSenha() {
   const senha = await document.querySelector("#senhaSeguranca").value;
   const token = localStorage.getItem("token");
+
   if (senha != "") {
     const response = await fetch(
       `${baseURL}/security/${senha},${Number(token)}`
     );
 
     const senhaR = await response.json();
+
     localStorage.setItem("token", `${Number(senhaR.token)}`);
-    console.log(senhaR);
     fecharModalSeguranca();
     verificaSeguranca(senhaR.mensagem);
     receberMensagem(senhaR);
