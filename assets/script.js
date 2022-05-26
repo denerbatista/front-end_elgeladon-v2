@@ -3,6 +3,14 @@ const baseURL = "https://api-elgeladon-v2.onrender.com/paletas";
 
 let paletas = [];
 
+function loaderA() {
+  document.querySelector(".loader").style.display = "flex";
+}
+
+function loaderF() {
+  document.querySelector(".loader").style.display = "none";
+}
+
 function modalErrorA() {
   const modalError = document.querySelector(".modalError");
   modalError.style.display = "block";
@@ -14,33 +22,17 @@ function modalErrorF() {
 }
 
 function receberMensagem(array) {
-  modalErrorF();
-  document.querySelector(".contentError").innerHTML = "";
-  document.querySelector(".contentError").insertAdjacentHTML(
-    "beforeend",
-    `<h2 id="title-header-modalError">Atenção</h2>
-    <p id="mensagemError"></p>
-    <button class="default-button" onclick="modalErrorF()">Fechar</button>`
-  );
   document.querySelector("#mensagemError").innerText = `${array.mensagem}`;
   modalErrorA();
-
   setTimeout(() => {
     modalErrorF();
   }, 5000);
-
-  document.querySelector(".contentError").innerHTML = "";
-  document.querySelector(".contentError").insertAdjacentHTML(
-    "beforeend",
-    ` <h2 id="title-header-modalError">Atenção</h2>
-          <div id="loader">
-            <div class="c-loader"></div>`
-  );
 }
 
 async function findAllPaletas() {
+  loaderA();
   const response = await fetch(`${baseURL}/find-paletas`);
-
+  loaderF();
   paletas = [await response.json()];
   if (paletas[0].mensagem) {
     receberMensagem(paletas[0]);
@@ -76,7 +68,9 @@ async function findPaletaById() {
     receberMensagem({ mensagem: "Paleta não encontrada!" });
   } else {
     const id = paletaSelect._id;
+    loaderA();
     const response = await fetch(`${baseURL}/find-paleta/${id}`);
+    loaderF();
     const paleta = await response.json();
     if (paleta.mensagem) {
       receberMensagem(paleta);
@@ -115,12 +109,12 @@ async function abrirModal(id = null) {
       "Atualizar uma Paleta";
     document.querySelector("#button-form-modal").innerText = "Atualizar";
 
-    modalErrorA();
+    loaderA();
 
     const response = await fetch(`${baseURL}/find-paleta/${id}`);
     const paleta = await response.json();
 
-    modalErrorF();
+    loaderF();
 
     document.querySelector("#sabor").value = paleta.sabor;
     document.querySelector("#preco").value = paleta.preco;
@@ -165,7 +159,7 @@ async function createPaleta() {
     (modoEdicaoAtivado ? `/update/${id},${token}` : `/create/${token}`);
 
   fecharModal();
-  modalErrorA();
+  loaderA();
 
   const response = await fetch(endpoint, {
     method: modoEdicaoAtivado ? "put" : "post",
@@ -175,10 +169,9 @@ async function createPaleta() {
     mode: "cors",
     body: JSON.stringify(paleta),
   });
-
   const novaPaleta = await response.json();
 
-  modalErrorF();
+  loaderF();
 
   if (novaPaleta.mensagem) {
     receberMensagem(novaPaleta);
@@ -214,7 +207,7 @@ function fecharModalDelete() {
 
 async function deletePaleta(id) {
   fecharModalDelete();
-  modalErrorA();
+  loaderA();
 
   const token = localStorage.getItem("token");
   const response = await fetch(`${baseURL}/delete/${id},${token}`, {
@@ -225,7 +218,7 @@ async function deletePaleta(id) {
     mode: "cors",
   });
   const result = await response.json();
-
+  loaderF();
   receberMensagem(result);
   findAllPaletas();
 }
@@ -256,16 +249,17 @@ async function enviarSenha() {
   const token = localStorage.getItem("token");
 
   if (senha != "") {
+    loaderA();
     const response = await fetch(
       `${baseURL}/security/${senha},${Number(token)}`
     );
+    loaderF();
 
     const senhaR = await response.json();
-
     localStorage.setItem("token", `${Number(senhaR.token)}`);
     fecharModalSeguranca();
-    verificaSeguranca(senhaR.mensagem);
     receberMensagem(senhaR);
+    verificaSeguranca(senhaR.mensagem);
   }
 }
 
@@ -274,15 +268,14 @@ async function verificarUsuario() {
   const response = await fetch(`${baseURL}/securitycheck/${Number(digitado)}`);
   const verificador = await response.json();
   localStorage.setItem("token", `${Number(verificador.token)}`);
-  document.querySelector("#messagem_seguranca").style.display="flex";
-  document.querySelector("#text_seguranca").innerText=verificador.mensagem;
-  setTimeout(()=>{
-    document.querySelector("#messagem_seguranca").style.display="none"; 
-  },5000)
-  document.querySelector("#close_seguranca").addEventListener("click",()=>{
-    document.querySelector("#messagem_seguranca").style.display="none";
-  })
-  
+  document.querySelector("#messagem_seguranca").style.display = "flex";
+  document.querySelector("#text_seguranca").innerText = verificador.mensagem;
+  setTimeout(() => {
+    document.querySelector("#messagem_seguranca").style.display = "none";
+  }, 5000);
+  document.querySelector("#close_seguranca").addEventListener("click", () => {
+    document.querySelector("#messagem_seguranca").style.display = "none";
+  });
 }
 
 findAllPaletas();
