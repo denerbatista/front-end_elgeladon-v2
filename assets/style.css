@@ -236,7 +236,7 @@ html {
     white-space: nowrap;
   }
   .Logo__titulo {
-    font-size: 2rem;
+    font-size: 1.423rem;
   }
 }
 
@@ -513,7 +513,7 @@ textarea {
 /* Modal de segurança inicio*/
 .backSeguranca {
   /* background: none; */
-  width: 15.559rem;
+  width: 17.559rem;
   height: 2.639rem;
 }
 
@@ -676,7 +676,7 @@ textarea {
   align-items: center;
 }
 
-#loader{
+#loader {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -721,16 +721,71 @@ section#messagem_seguranca {
 span#close_seguranca {
   font-size: 2rem;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
-span#close_seguranca:hover{
+span#close_seguranca:hover {
   color: rgb(255, 0, 0);
   transform: scale(1.5);
 }
 
-p#text_seguranca{
+p#text_seguranca {
   align-items: center;
   font-size: 1.5rem;
 }
 /* mensagem segurança inicio */
+
+/* botão on/off edição inicio */
+#button-cadastrar {
+  display: none;
+}
+
+.PaletaListaItem__acoes {
+  display: none;
+}
+
+.toggle > label {
+  position: relative;
+  display: block;
+  height: 20px;
+  width: 44px;
+  background: #898989;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.toggle > label:after {
+  position: absolute;
+  left: -2px;
+  top: -3px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
+  content: "";
+  transition: all 0.3s ease;
+}
+.toggle > label:active:after {
+  transform: scale(1.15, 0.85);
+}
+.toggle > input:checked ~ label {
+  background: #6fbeb5;
+}
+.toggle > input:checked ~ label:after {
+  left: 20px;
+  background: #179588;
+}
+.toggle > input:disabled ~ label {
+  background: #d5d5d5;
+  pointer-events: none;
+}
+.toggle > input:disabled ~ label:after {
+  background: #bcbdbc;
+}
+
+.toggle > input {
+  display: none;
+}
+/* botão on/off edição fim */

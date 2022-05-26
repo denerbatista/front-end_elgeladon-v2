@@ -37,6 +37,12 @@
             <img id="seguranca" src="https://cdn-icons-png.flaticon.com/512/1417/1417897.png"
               onclick="abrirModalSeguranca(),verificarUsuario()" alt="liberar_acesso" />
             <p>Modo Edição</p>
+
+            <div class="toggle">
+              <input onclick="modoEdicaoOnOff()" type="checkbox" id="foo" disabled/>
+              <label for="foo"></label>
+            </div>
+
             <div class="dicaTexto">Clique no cadeado para desbloquear ou bloquear edição</div>
           </span>
         </div>
@@ -124,10 +130,10 @@
     </div>
     </div>
 
-    <div class="loader" >
-      <div class="contentLoader" >
+    <div class="loader">
+      <div class="contentLoader">
         <div id="loader">
-        <div class="c-loader"></div>
+          <div class="c-loader"></div>
         </div>
       </div>
     </div>

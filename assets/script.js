@@ -85,8 +85,8 @@ async function findPaletaById() {
       <div class="PaletaCardItem__descricao">${paleta.descricao}</div>
       
       <div class="PaletaListaItem__acoes Acoes button-editar-apagar">
-          <button class="Acoes__editar btn" onclick="abrirModal('${paleta._id}')">Editar</button> 
-          <button class="Acoes__apagar btn" onclick="abrirModalDelete('${paleta._id}')">Apagar</button> 
+          <button type="button" class="Acoes__editar btn" onclick="abrirModal('${paleta._id}')">Editar</button> 
+          <button type="button" class="Acoes__apagar btn" onclick="abrirModalDelete('${paleta._id}')">Apagar</button> 
       </div>
   </div>
   <img class="PaletaCardItem__foto" src="${paleta.foto}" alt="Paleta de ${paleta.sabor}" />
@@ -235,11 +235,14 @@ function fecharModalSeguranca() {
 async function verificaSeguranca(resposta) {
   const cadeado = resposta;
   const verificador = cadeado == "Acesso Liberado";
+
   verificador
     ? (document.querySelector("#seguranca").src =
         "https://cdn-icons-png.flaticon.com/512/193/193220.png")
     : (document.querySelector("#seguranca").src =
         "https://cdn-icons-png.flaticon.com/512/1417/1417897.png");
+
+  document.getElementById("foo").disabled = verificador ? false : true;
 
   return verificador;
 }
@@ -278,4 +281,13 @@ async function verificarUsuario() {
   });
 }
 
+function modoEdicaoOnOff() {
+  const marcado = document.querySelector("input[type=checkbox]:checked");
+  const botaoCadastrar = document.getElementById("button-cadastrar");
+  const botaoEditarApagar = document.querySelectorAll(".PaletaListaItem__acoes");
+  botaoCadastrar.style.display = marcado != null ? "block" : "none";
+  botaoEditarApagar.forEach((elemento)=>{
+    elemento.style.display = marcado != null ? "block" : "none";
+  })
+}
 findAllPaletas();
