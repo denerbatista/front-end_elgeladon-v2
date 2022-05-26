@@ -24,7 +24,7 @@ function receberMensagem(array) {
   );
   document.querySelector("#mensagemError").innerText = `${array.mensagem}`;
   modalErrorA();
-  
+
   setTimeout(() => {
     modalErrorF();
   }, 5000);
@@ -274,7 +274,15 @@ async function verificarUsuario() {
   const response = await fetch(`${baseURL}/securitycheck/${Number(digitado)}`);
   const verificador = await response.json();
   localStorage.setItem("token", `${Number(verificador.token)}`);
-  alert(verificador.mensagem);
+  document.querySelector("#messagem_seguranca").style.display="flex";
+  document.querySelector("#text_seguranca").innerText=verificador.mensagem;
+  setTimeout(()=>{
+    document.querySelector("#messagem_seguranca").style.display="none"; 
+  },5000)
+  document.querySelector("#close_seguranca").addEventListener("click",()=>{
+    document.querySelector("#messagem_seguranca").style.display="none";
+  })
+  
 }
 
 findAllPaletas();

@@ -675,3 +675,38 @@ textarea {
   }
 }
 /* animação carregamento mensagem fim*/
+
+/* style mensage confirmation */
+
+section#messagem_seguranca {
+  padding: 1.5rem;
+  background-color: #4ae9f1;
+  color: #000000;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2rem;
+}
+
+span#close_seguranca {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+span#close_seguranca:hover{
+  color: rgb(255, 0, 0);
+  transform: scale(1.5);
+}
+
+p#text_seguranca{
+  align-items: center;
+  font-size: 1.5rem;
+}
